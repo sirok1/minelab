@@ -1,0 +1,13 @@
+.navLink {
+    color: #429295;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration: underline 0.09em transparent;
+    text-underline-offset: 0.3em;
+    transition: text-decoration-color 300ms;
+}
+.navLink:hover {
+    text-decoration: underline 0.09em #429295;
+}
