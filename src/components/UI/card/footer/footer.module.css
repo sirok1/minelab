@@ -1,0 +1,14 @@
+.pinedFooter {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: #E9F1F3;
+    max-height: 5rem;
+    min-height: 5rem;
+    min-width: 100vw;
+    padding-inline: 5em;
+    padding-block: .2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
