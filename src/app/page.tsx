@@ -1,95 +1,26 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-
+import Card from "@/components/UI/card/Card";
+import Image from "next/image";
+import fullMineLabLogo from "@/assets/full-logo.svg"
+import cl from "./mainPage.module.css"
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+        <div className={cl.mainContainer}>
+          <Card>
+            <div>
+                <Image src={fullMineLabLogo} alt={"logo minelab"}/>
+                  <article className={cl.mainText}>
+                      <p>Привет, странник! Добро пожаловать в MINElab - твой уютный уголок в мире Майнкрафта! 🎮 🌍 Здесь тебя ждёт невероятное приключение, где можно раскрывать свои творческие способности, строить эпические сооружения и исследовать безграничные просторы этой удивительной виртуальной вселенной.</p>
+
+                      <p>Мы - сообщество страстных выживальщиков, талантливых строителей и энтузиастов, объединенных любовью к Майнкрафту. Здесь ты найдешь множество увлекательных советов, уникальных модов, полезных ресурсов и невероятных историй, чтобы вдохновить себя на новые подвиги в мире блоков и кубиков!</p>
+
+                      <p>Наше сообщество открыто для всех - будь ты новичок или опытный профи в Майнкрафт, у нас ты обязательно найдешь что-то для себя. Самые классные сборки, советы от профи и многое другое тебя ждет на страницах MINElab.</p>
+
+                      <p>Так что вперед, исследуй, твори, играй в Майнкрафт вместе с нами! Давай вместе создадим самые захватывающие приключения в мире блоков! 🌟</p>
+                  </article>
+            </div>
+          </Card>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </>
   )
 }
