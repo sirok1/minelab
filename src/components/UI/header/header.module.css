@@ -1,0 +1,19 @@
+.header {
+    margin-top: .2em;
+    margin-inline: 5em;
+    padding-inline: 2em;
+    display: flex;
+    position: sticky;
+    justify-content: space-between;
+    height: 5rem;
+    top: 0;
+    background: #E9F1F3;
+    border-radius: 15px;
+}
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    align-items: center;
+    min-width: 100%;
+}
