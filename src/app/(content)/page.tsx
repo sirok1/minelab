@@ -1,14 +1,13 @@
 import Card from "@/components/UI/card/Card";
 import Image from "next/image";
-import fullMineLabLogo from "@/assets/full-logo.svg"
 import cl from "./mainPage.module.css"
 export default function Home() {
   return (
     <>
-        <div className={cl.mainContainer}>
+        <div className={`px-0.5  md:px-14`}>
           <Card>
             <div>
-                <Image src={fullMineLabLogo} alt={"logo minelab"}/>
+                <Image src={"/assets/full-logo.svg"} height={140} width={380} alt={"logo minelab"}/>
                   <article className={cl.mainText}>
                       <p>Привет, странник! Добро пожаловать в MINElab - твой уютный уголок в мире Майнкрафта! 🎮 🌍 Здесь тебя ждёт невероятное приключение, где можно раскрывать свои творческие способности, строить эпические сооружения и исследовать безграничные просторы этой удивительной виртуальной вселенной.</p>
 

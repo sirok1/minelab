@@ -1,11 +1,12 @@
 .button {
     background-color: #3B9EA2;
-    padding-inline: 1em;
-    padding-block: .9em;
+    padding-inline: .8em;
+    padding-block: .3em;
     border-radius: 15px;
-    width: 14em;
+    width: 11em;
     border: none;
     transition: background-color 300ms;
+    scale: .8;
 }
 .button:hover {
     background-color: #2c7578;
@@ -17,7 +18,7 @@
 }
 .text {
     color: #D9D9D9;
-    font-size: 31px;
+    font-size: 25px;
     font-weight: 700;
     font-style: normal;
     line-height: normal;

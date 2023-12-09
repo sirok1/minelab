@@ -12,7 +12,7 @@
 .content {
     margin-block: 1rem;
     margin-inline: 5em;
-    min-height: calc(100vh - 10rem);
+    min-height: calc(100vh - 9.7rem);
 }
 
 .socialLinks {
@@ -27,13 +27,13 @@
 
 .serviceInfo a {
     color: #429295;
-    font-size: 24px;
+    font-size: 14px;
     font-weight: 700;
     text-decoration: none;
 }
 
 .serviceInfo span {
     color: #429295;
-    font-size: 24px;
+    font-size: 14px;
     font-weight: 700;
 }

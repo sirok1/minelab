@@ -5,8 +5,8 @@
     display: flex;
     position: sticky;
     justify-content: space-between;
-    height: 5rem;
-    top: 0;
+    height: 4rem;
+    top: .2em;
     background: #E9F1F3;
     border-radius: 15px;
 }
