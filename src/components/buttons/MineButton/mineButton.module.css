@@ -5,6 +5,7 @@
     border-radius: 15px;
     border: none;
     transition: background-color 300ms;
+    cursor: pointer;
 }
 .button:hover {
     background-color: #2c7578;

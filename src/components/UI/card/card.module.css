@@ -1,4 +1,5 @@
 .card {
+    display: flex;
     padding-inline: 3rem;
     padding-block: 1.2rem;
     border-radius: 50px;

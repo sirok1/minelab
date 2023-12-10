@@ -4,10 +4,10 @@ import cl from "./mainPage.module.css"
 import MineButton from "@/components/buttons/MineButton/MineButton";
 export default function Home() {
   return (
-    <>
-        <div style={{display: "flex", justifyContent: "center"}}>
-          <Card style={{width: "50%"}}>
-            <div>
+    <div style={{minWidth: "100%", display: "grid"}}>
+        <div style={{display: "flex", justifyContent: "center", maxWidth: "80%", justifySelf: "center"}}>
+          <Card>
+            <div style={{display: "flex", flexDirection: "column", justifyContent: "center", minHeight: "100%"}}>
                 <Image src={"/assets/full-logo.png"} height={140} width={380} alt={"logo minelab"}/>
                   <article className={cl.mainText}>
                       <p>Привет, странник! Добро пожаловать в MINElab - твой уютный уголок в мире Майнкрафта! 🎮 🌍 Здесь тебя ждёт невероятное приключение, где можно раскрывать свои творческие способности, строить эпические сооружения и исследовать безграничные просторы этой удивительной виртуальной вселенной.</p>
@@ -22,22 +22,22 @@ export default function Home() {
                     <Image src={"/assets/minecraft-heroes-in-battle.png"} alt={"minecraft battle"} height={340} width={390}/>
                 </div>
                 <div style={{display: "flex", minWidth: "100%", justifyContent: "center"}}>
-                    <div style={{paddingBlock: "1em", display: "flex", maxWidth: "95%", gap: "1em", justifyContent: "space-between", alignContent: "center"}}>
+                    <div className={cl.buttons}>
                         <MineButton href={"/mods"} style={{paddingInline: "3em", paddingBlock: ".7em"}}>
                             <div style={{display: "flex", justifyContent: "space-between", alignContent: "center", gap: "1.2em"}}>
-                                <span style={{fontSize: 36, color: "white"}}>Моды</span>
+                                <span style={{fontSize: "2.5rem", color: "white"}}>Моды</span>
                                 <Image alt={'mods icon'} src={"/assets/redstone-icon.png"} width={50} height={50}/>
                             </div>
                         </MineButton>
                         <MineButton href={"/texturepacks"} style={{paddingInline: "3em", paddingBlock: ".7em"}}>
                             <div style={{display: "flex", justifyContent: "space-between", alignContent: "center", gap: "1.2em"}}>
-                                <span style={{fontSize: 36, color: "white"}}>Текстурпаки</span>
+                                <span style={{fontSize: "2.5rem", color: "white"}}>Текстурпаки</span>
                                 <Image alt={'texturepacks icon'} src={"/assets/mobs-icon.png"} width={50} height={50}/>
                             </div>
                         </MineButton>
                         <MineButton href={"/assemblies"} style={{paddingInline: "3em", paddingBlock: ".7em"}}>
                             <div style={{display: "flex", justifyContent: "space-between", alignContent: "center", gap: "1.2em"}}>
-                                <span style={{fontSize: 36, color: "white"}}>Сборки</span>
+                                <span style={{fontSize: "2.5rem", color: "white"}}>Сборки</span>
                                 <Image alt={'assemblies icon'} src={"/assets/rpg-icon.png"} width={50} height={50}/>
                             </div>
                         </MineButton>
@@ -46,6 +46,6 @@ export default function Home() {
             </div>
           </Card>
         </div>
-    </>
+    </div>
   )
 }

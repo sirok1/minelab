@@ -8,6 +8,8 @@ import Box from "@mui/material/Box";
 import {handleAction} from "next/dist/server/app-render/action-handler";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import {useState} from "react";
+import {Backdrop, CircularProgress} from "@mui/material";
 
 function Copyright(props: any) {
     return (
@@ -23,14 +25,37 @@ function Copyright(props: any) {
 }
 
 export default function Register() {
+    const [passwordError, setPasswordError] = useState("")
+    const [loginError, setLoginError] = useState("")
+    const [open, setOpen] = useState(false)
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const data = new FormData(event.currentTarget)
+        if (!data.get("login") || !data.get("first-password")|| !data.get("second-password")) {
+            if (!data.get("login")) setLoginError("Придумайте логин")
+            if (!data.get("second-password")) setPasswordError("Пароли не совпадают")
+            if (!data.get("first-password")) setPasswordError("Придумайте пароль")
+            return handleBackdrop()
+        }
+        setLoginError("")
+        setPasswordError("")
+        if (data.get("first-password") !== data.get("second-password")){
+            setPasswordError("Пароли не совпадают")
+            handleBackdrop()
+        }
         console.log(data)
     }
-
+    const handleBackdrop = () => {
+        setOpen(!open)
+    }
     return (
         <Container maxWidth="xs">
+            <Backdrop
+                sx={{ color: '#fff', zIndex: 10001 }}
+                open={open}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
             <CssBaseline/>
             <Box
                 sx={{
@@ -45,6 +70,8 @@ export default function Register() {
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt:1}}>
                     <TextField
+                        error={!!loginError}
+                        helperText={loginError}
                         margin='normal'
                         required
                         fullWidth
@@ -55,6 +82,8 @@ export default function Register() {
                         autoFocus
                     />
                     <TextField
+                        error={!!passwordError}
+                        helperText={passwordError}
                         margin="normal"
                         required
                         fullWidth
@@ -65,6 +94,8 @@ export default function Register() {
                         autoComplete='new-password'
                     />
                     <TextField
+                        error={!!passwordError}
+                        helperText={passwordError}
                         margin="normal"
                         required
                         fullWidth
@@ -79,6 +110,7 @@ export default function Register() {
                         fullWidth
                         variant="contained"
                         sx={{mt: 3, mb: 2}}
+                        onClick={handleBackdrop}
                     >
                         Зарегистрироваться
                     </Button>

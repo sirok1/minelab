@@ -6,7 +6,7 @@ export default function LoginPage(){
     return (
         <>
             <div style={{display: "flex", minHeight: "100%", minWidth: "100%", justifyContent: "center", alignItems: "center"}}>
-                <Card style={{width: "30%", height: "50%"}}>
+                <Card>
                     <Login/>
                 </Card>
             </div>
