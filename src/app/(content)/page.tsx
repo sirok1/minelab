@@ -5,7 +5,7 @@ import MineButton from "@/components/buttons/MineButton/MineButton";
 export default function Home() {
   return (
     <div style={{minWidth: "100%", display: "grid"}}>
-        <div style={{display: "flex", justifyContent: "center", maxWidth: "80%", justifySelf: "center"}}>
+        <div style={{display: "flex", justifyContent: "center", maxWidth: "80%", width: "60%", justifySelf: "center"}}>
           <Card>
             <div style={{display: "flex", flexDirection: "column", justifyContent: "center", minHeight: "100%"}}>
                 <Image src={"/assets/full-logo.png"} height={140} width={380} alt={"logo minelab"}/>

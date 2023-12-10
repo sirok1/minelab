@@ -37,6 +37,7 @@ export default function LoginLayout({children}:{children:React.ReactNode}){
                     <Link href={"/terms-of-service"}>Соглашение</Link>
                     <Link href={"/privacy-policy"}>Конфиденциальность</Link>
                     <span>© {new Date().getFullYear()} — sirok1 | Все права защищены</span>
+                    <div></div>
                 </div>
             </Footer>
         </>

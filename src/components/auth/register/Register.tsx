@@ -10,6 +10,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import {useState} from "react";
 import {Backdrop, CircularProgress} from "@mui/material";
+import axios from "axios";
 
 function Copyright(props: any) {
     return (
@@ -43,6 +44,16 @@ export default function Register() {
             setPasswordError("Пароли не совпадают")
             handleBackdrop()
         }
+       axios.post("/api/v1/user/create", {
+           login: data.get('login'),
+           password: data.get('first-password')
+       })
+           .then(res => {
+               console.log(res)
+           })
+           .catch(e => {
+               console.log(e)
+           })
         console.log(data)
     }
     const handleBackdrop = () => {

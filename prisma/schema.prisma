@@ -14,16 +14,12 @@ model User {
   login               String    @unique
   password            String
   recently_downloaded Content[]
-  role_id             Int
-  role                Role      @relation(fields: [role_id], references: [id])
+  role                Role      @default(user)
 }
 
-model Role {
-  id           Int     @id @default(autoincrement())
-  role_name_ru String
-  role_name    String
-  is_admin     Boolean
-  User         User[]
+enum Role {
+  admin
+  user
 }
 
 model Content {
