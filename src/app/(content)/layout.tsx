@@ -2,7 +2,7 @@ import React from "react";
 import cl from "@/app/(content)/mainLayout.module.css";
 import Image from "next/image";
 import NavLink from "@/components/UI/navLink/NavLink";
-import LoginButton from "@/components/UI/loginButton/LoginButton";
+import LoginButton from "@/components/buttons/loginButton/LoginButton";
 import Header from "@/components/UI/header/Header";
 import Footer from "@/components/UI/footer/Footer";
 import Link from "next/link";

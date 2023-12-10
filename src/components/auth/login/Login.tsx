@@ -15,7 +15,7 @@ function Copyright(props: any) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
-            <Link href="https://mui.com/" style={{textDecoration: "none", color: "black"}}>
+            <Link href="/" style={{textDecoration: "none", color: "black"}}>
                 MINELAB
             </Link>{' '}
             {new Date().getFullYear()}
@@ -53,10 +53,10 @@ export default function Login() {
                         margin="normal"
                         required
                         fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
+                        id="login"
+                        label="Логин"
+                        name="logn"
+                        autoComplete="nickname"
                         autoFocus
                     />
                     <TextField
@@ -64,7 +64,7 @@ export default function Login() {
                         required
                         fullWidth
                         name="password"
-                        label="Password"
+                        label="Пароль"
                         type="password"
                         id="password"
                         autoComplete="current-password"
@@ -75,11 +75,11 @@ export default function Login() {
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
                     >
-                        Sign In
+                        Войти
                     </Button>
-                    <div className={"text-right"}>
-                        <Link href="#">
-                            {"Нет аккаунта ? Зарегистрируйтесь"}
+                    <div style={{textAlign: "right"}}>
+                        <Link href="/register" style={{textDecoration: "none", color: "blue"}}>
+                            Нет аккаунта ? Зарегистрируйтесь
                         </Link>
                     </div>
                 </Box>
