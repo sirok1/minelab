@@ -12,9 +12,11 @@ datasource db {
 model User {
   id                  Int       @id @default(autoincrement())
   login               String    @unique
-  password            String
+  hashedPassword      String
   recently_downloaded Content[]
   role                Role      @default(user)
+  createAt            DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
 }
 
 enum Role {

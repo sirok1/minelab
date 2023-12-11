@@ -3,13 +3,15 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from 'next/link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import {useState} from "react";
+import {Backdrop, CircularProgress} from "@mui/material";
+import {signIn} from "next-auth/react";
+import {useRouter} from "next/navigation";
+import axios from "axios";
 
 function Copyright(props: any) {
     return (
@@ -25,17 +27,49 @@ function Copyright(props: any) {
 }
 
 export default function Login() {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const [passwordError, setPasswordError] = useState("")
+    const [loginError, setLoginError] = useState("")
+    const [open, setOpen] = useState(false)
+    const router = useRouter()
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        if (!data.get("login") || !data.get('password')){
+            setLoginError("Заполните все поля")
+            setPasswordError("Заполните все поля")
+            return handleBackdrop()
+        }
+        setLoginError("")
+        setPasswordError("")
+        let res = await signIn('credentials', {login: data.get('login'), password: data.get('password'), redirect: false})
+        if (res?.error){
+            console.error(res?.error)
+            setLoginError("Имя или пароль не верны")
+            setPasswordError("Имя или пароль не верны")
+            setOpen(false)
+        }
+        else {
+            axios.get("/api/user/me").then((res) => {
+                console.log(res.data)
+                router.replace("/profile")
+            })
+
+        }
+
     };
+
+    const handleBackdrop = () => {
+        setOpen(!open)
+    }
 
     return (
         <Container component="main" maxWidth="xs">
+            <Backdrop
+                sx={{ color: '#fff', zIndex: 10001 }}
+                open={open}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
             <CssBaseline />
             <Box
                 sx={{
@@ -50,16 +84,20 @@ export default function Login() {
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                     <TextField
+                        error={!!loginError}
+                        helperText={loginError}
                         margin="normal"
                         required
                         fullWidth
                         id="login"
                         label="Логин"
-                        name="logn"
+                        name="login"
                         autoComplete="nickname"
                         autoFocus
                     />
                     <TextField
+                        error={!!passwordError}
+                        helperText={passwordError}
                         margin="normal"
                         required
                         fullWidth
@@ -73,6 +111,7 @@ export default function Login() {
                         type="submit"
                         fullWidth
                         variant="contained"
+                        onClick={handleBackdrop}
                         sx={{ mt: 3, mb: 2 }}
                     >
                         Войти

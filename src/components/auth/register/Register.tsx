@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import {useState} from "react";
 import {Backdrop, CircularProgress} from "@mui/material";
 import axios from "axios";
+import {signIn} from "next-auth/react";
 
 function Copyright(props: any) {
     return (
@@ -29,7 +30,7 @@ export default function Register() {
     const [passwordError, setPasswordError] = useState("")
     const [loginError, setLoginError] = useState("")
     const [open, setOpen] = useState(false)
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const data = new FormData(event.currentTarget)
         if (!data.get("login") || !data.get("first-password")|| !data.get("second-password")) {
@@ -44,17 +45,24 @@ export default function Register() {
             setPasswordError("Пароли не совпадают")
             handleBackdrop()
         }
-       axios.post("/api/v1/user/create", {
-           login: data.get('login'),
-           password: data.get('first-password')
-       })
-           .then(res => {
-               console.log(res)
-           })
-           .catch(e => {
-               console.log(e)
-           })
-        console.log(data)
+        if (`${data.get("first-password")}`.length < 6){
+            setPasswordError("Пароль должен содержать минимум 6 символов")
+            handleBackdrop()
+        }
+        try {
+            await axios.post("/api/user/create", {
+                login: data.get('login'),
+                password: data.get('first-password')
+            })
+            await signIn('credentials', {login: data.get('login'), password: data.get('first-password')})
+        }
+        catch (e) {
+            console.error(e)
+            setLoginError("Пользователь с таким именем уже существует")
+        }
+        finally {
+            setOpen(false)
+        }
     }
     const handleBackdrop = () => {
         setOpen(!open)
