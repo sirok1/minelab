@@ -1,22 +1,12 @@
-import { signIn } from '@/auth';
-import { AuthError } from 'next-auth';
+"use server"
 
+import {cookies} from "next/headers"
+import {ResponseCookie} from "next/dist/compiled/@edge-runtime/cookies";
 
-export async function authenticate(
-    prevState: string | undefined,
-    formData: FormData,
-) {
-    try {
-        await signIn('credentials', formData);
-    } catch (error) {
-        if (error instanceof AuthError) {
-            switch (error.type) {
-                case 'CredentialsSignin':
-                    return 'Invalid credentials.';
-                default:
-                    return 'Something went wrong.';
-            }
-        }
-        throw error;
-    }
+export async function createCookie(data:ResponseCookie) {
+    cookies().set(data)
+}
+
+export async function deleteCookie(name:string) {
+    cookies().delete(name)
 }

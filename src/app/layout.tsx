@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Raleway } from 'next/font/google'
 import './globals.css'
 import React from "react";
-import NextAuthProvider from "@/components/providers/NextAuthProvider";
 import ReactQueryProvider from "@/components/providers/ReactQueryProvider";
 import ReduxCustomProvider from "@/components/providers/ReduxCustomProvider";
 
@@ -23,9 +22,7 @@ export default function RootLayout({
       <body className={raleway.className}>
       <ReduxCustomProvider>
           <ReactQueryProvider>
-            <NextAuthProvider>
-                {children}
-            </NextAuthProvider>
+            {children}
           </ReactQueryProvider>
       </ReduxCustomProvider>
       </body>

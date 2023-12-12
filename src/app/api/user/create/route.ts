@@ -1,19 +1,38 @@
 import prismadb from "@/lib/prismadb";
 import bcrypt from "bcrypt";
 import {NextResponse} from "next/server";
+import {generateAccessToken} from "@/lib/jwt";
+import {createCookie} from "@/lib/actions";
 
 export async function POST(req:Request) {
     try {
         const {login, password} = await req.json()
+        const existedUser = await prismadb.user.findUnique({
+            where: {
+                login
+            }
+        })
+        if (existedUser) return new NextResponse("userAlreadyExists", {status: 403})
         const hashedPassword = await bcrypt.hash(password, 12)
+        const token = generateAccessToken({login: login, hashedPassword: hashedPassword})
+        if (!token) return new NextResponse("internalError", {status: 500})
+
         const user = await prismadb.user.create({
             data: {
                 login: login,
-                hashedPassword: hashedPassword
+                hashedPassword: hashedPassword,
+                token: token,
+                tokenExpires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
             }
         })
         console.log(user)
-        return NextResponse.json(user)
+        await createCookie({
+            secure: true,
+            value: token,
+            name: 'token',
+            maxAge: 1000 * 60 * 60 * 24 * 30
+        })
+        return NextResponse.json({...user, token})
     }
     catch (e) {
         console.error(e)

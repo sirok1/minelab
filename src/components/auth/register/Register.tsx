@@ -11,8 +11,6 @@ import Button from "@mui/material/Button";
 import {useState} from "react";
 import {Backdrop, CircularProgress} from "@mui/material";
 import axios from "axios";
-import {signIn} from "next-auth/react";
-
 function Copyright(props: any) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -50,11 +48,11 @@ export default function Register() {
             handleBackdrop()
         }
         try {
-            await axios.post("/api/user/create", {
+            const userData = await axios.post("/api/user/create", {
                 login: data.get('login'),
                 password: data.get('first-password')
             })
-            await signIn('credentials', {login: data.get('login'), password: data.get('first-password')})
+            console.log(userData)
         }
         catch (e) {
             console.error(e)
