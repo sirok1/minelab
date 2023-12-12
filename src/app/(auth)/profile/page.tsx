@@ -20,7 +20,7 @@ export default async function Profile(){
     return (
         <>
             <div style={{minWidth: "100%", display: "flex", justifyContent: "center", maxHeight: "60%", alignItems: "center"}}>
-                <Card style={{maxHeight: "60%"}}>
+                <Card>
                   <div style={{display: "flex", justifyContent: "space-between"}}>
                     <div style={{display: "flex", justifyContent: "center", flexDirection: "column", gap: "2rem", alignItems: "center"}}>
                         <img src={user.avatarUrl} alt='user avatar'/>

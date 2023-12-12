@@ -43,11 +43,11 @@ export default function Register() {
         setPasswordError("")
         if (data.get("first-password") !== data.get("second-password")){
             setPasswordError("Пароли не совпадают")
-            handleBackdrop()
+            return handleBackdrop()
         }
         if (`${data.get("first-password")}`.length < 6){
             setPasswordError("Пароль должен содержать минимум 6 символов")
-            handleBackdrop()
+            return handleBackdrop()
         }
         try {
             await axios.post("/api/user/create", {

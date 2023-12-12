@@ -22,6 +22,7 @@ export default async function Layout({children}:{children:React.ReactNode}){
             }
         })
     }
+    console.log(user)
     return (
         <div>
             <Header>
@@ -35,7 +36,7 @@ export default async function Layout({children}:{children:React.ReactNode}){
                     </div>
                 </div>
                 {
-                    user? <Link href={"/profile"}><Button icon={<Avatar src={user.avatarUrl}/> }>{user.login}</Button></Link>
+                    user? <Link href={"/profile"}><Button style={{height: "3.2rem"}} size={'large'} icon={<Avatar src={user.avatarUrl}/> }>{user.login}</Button></Link>
                         : <LoginButton/>
                 }
             </Header>
