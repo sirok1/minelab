@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import {NextResponse} from "next/server";
 import {generateAccessToken} from "@/lib/jwt";
 import {createCookie} from "@/lib/actions";
+import {AvatarGenerator} from "random-avatar-generator";
 
 export async function POST(req:Request) {
     try {
@@ -16,13 +17,14 @@ export async function POST(req:Request) {
         const hashedPassword = await bcrypt.hash(password, 12)
         const token = generateAccessToken({login: login, hashedPassword: hashedPassword})
         if (!token) return new NextResponse("internalError", {status: 500})
-
+        const avatarGenerator = new AvatarGenerator()
         const user = await prismadb.user.create({
             data: {
                 login: login,
                 hashedPassword: hashedPassword,
                 token: token,
-                tokenExpires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
+                tokenExpires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
+                avatarUrl: avatarGenerator.generateRandomAvatar()
             }
         })
         console.log(user)
@@ -32,7 +34,7 @@ export async function POST(req:Request) {
             name: 'token',
             maxAge: 1000 * 60 * 60 * 24 * 30
         })
-        return NextResponse.json({...user, token})
+        return NextResponse.json({...user})
     }
     catch (e) {
         console.error(e)

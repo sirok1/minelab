@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {useState} from "react";
 import {Backdrop, CircularProgress} from "@mui/material";
-import {signIn} from "next-auth/react";
 import {useRouter} from "next/navigation";
 import axios from "axios";
 
@@ -41,19 +40,19 @@ export default function Login() {
         }
         setLoginError("")
         setPasswordError("")
-        let res = await signIn('credentials', {login: data.get('login'), password: data.get('password'), redirect: false})
-        if (res?.error){
-            console.error(res?.error)
-            setLoginError("Имя или пароль не верны")
-            setPasswordError("Имя или пароль не верны")
-            setOpen(false)
-        }
-        else {
-            axios.get("/api/user/me").then((res) => {
-                console.log(res.data)
-                router.replace("/profile")
+        try {
+            await axios.post("/api/user/login", {
+                login: data.get("login"),
+                password: data.get("password")
             })
-
+            setOpen(false)
+            router.replace("/profile")
+        }
+        catch (e) {
+            console.error(e)
+            setLoginError("Неправильное имя пользователя или пароль")
+            setPasswordError("Неправильное имя пользователя или пароль")
+            setOpen(false)
         }
 
     };

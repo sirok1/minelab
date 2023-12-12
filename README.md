@@ -5,7 +5,7 @@ PG_LINK=
 NEXTAUTH_SECRET=
 ```
 
-gen NEXTAUTH_SECRET 
+gen ACCESS_TOKEN
 ```
 openssl rand -base64 32
 ```

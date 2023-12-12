@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import {useState} from "react";
 import {Backdrop, CircularProgress} from "@mui/material";
 import axios from "axios";
+import {useRouter} from "next/navigation";
 function Copyright(props: any) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -28,6 +29,7 @@ export default function Register() {
     const [passwordError, setPasswordError] = useState("")
     const [loginError, setLoginError] = useState("")
     const [open, setOpen] = useState(false)
+    const router = useRouter()
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const data = new FormData(event.currentTarget)
@@ -48,17 +50,16 @@ export default function Register() {
             handleBackdrop()
         }
         try {
-            const userData = await axios.post("/api/user/create", {
+            await axios.post("/api/user/create", {
                 login: data.get('login'),
                 password: data.get('first-password')
             })
-            console.log(userData)
+            setOpen(false)
+            router.replace('/profile')
         }
         catch (e) {
             console.error(e)
             setLoginError("Пользователь с таким именем уже существует")
-        }
-        finally {
             setOpen(false)
         }
     }

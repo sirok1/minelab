@@ -10,16 +10,16 @@ datasource db {
 }
 
 model User {
-  id                  Int       @id @default(autoincrement())
-  login               String    @unique
-  hashedPassword      String
-  recently_downloaded Content[]
-  role                Role      @default(user)
-  createAt            DateTime  @default(now())
-  updatedAt           DateTime  @updatedAt
-  token               String?   @unique
-  tokenExpires        DateTime?
-  tokenCreatedAt      DateTime? @default(now())
+  id             Int       @id @default(autoincrement())
+  login          String    @unique
+  hashedPassword String
+  role           Role      @default(user)
+  createAt       DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  token          String?   @unique
+  tokenExpires   DateTime?
+  tokenCreatedAt DateTime? @default(now())
+  avatarUrl      String
 }
 
 enum Role {
@@ -28,40 +28,41 @@ enum Role {
 }
 
 model Content {
-  id         Int                @id @default(autoincrement())
-  cover_url  String
-  title      String
-  body       String
-  published  Boolean            @default(false)
-  author     User               @relation(fields: [author_id], references: [id])
-  author_id  Int
-  versions   MinecraftVersion[]
-  categories Categories[]
-  files      Files[]
-  developer  String?
+  id            Int          @id @default(autoincrement())
+  cover_url     String
+  title         String
+  description   String
+  contentTypeId String
+  contentType   ContentType  @relation(fields: [contentTypeId], references: [id])
+  categories    Categories[]
+  files         Files[]
 }
 
 model Files {
-  id         Int     @id @default(autoincrement())
-  content    Content @relation(fields: [content_id], references: [id])
+  id         Int              @id @default(autoincrement())
+  content    Content          @relation(fields: [content_id], references: [id])
   content_id Int
-  path       String  @unique
+  path       String           @unique
+  version_id Int
+  version    MinecraftVersion @relation(fields: [version_id], references: [id])
 }
 
 model MinecraftVersion {
-  id                Int       @id @default(autoincrement())
-  version_full_name String    @unique
+  id                Int     @id @default(autoincrement())
+  version_full_name String  @unique
   loader            String
-  content           Content[]
-  optifine          Boolean   @default(false)
+  optifine          Boolean @default(false)
+  files             Files[]
 }
 
 model ContentType {
-  id      String @id @unique
-  name_ru String
+  id       String    @id @unique
+  name_ru  String
+  contents Content[]
 }
 
 model Categories {
   id      Int       @id @default(autoincrement())
+  name    String    @unique
   content Content[]
 }

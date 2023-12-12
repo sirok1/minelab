@@ -3,7 +3,6 @@ import { Raleway } from 'next/font/google'
 import './globals.css'
 import React from "react";
 import ReactQueryProvider from "@/components/providers/ReactQueryProvider";
-import ReduxCustomProvider from "@/components/providers/ReduxCustomProvider";
 
 const raleway = Raleway({ subsets: ['cyrillic-ext'] })
 
@@ -20,11 +19,9 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={raleway.className}>
-      <ReduxCustomProvider>
           <ReactQueryProvider>
             {children}
           </ReactQueryProvider>
-      </ReduxCustomProvider>
       </body>
     </html>
   )

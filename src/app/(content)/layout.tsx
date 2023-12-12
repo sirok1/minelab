@@ -6,8 +6,22 @@ import LoginButton from "@/components/buttons/loginButton/LoginButton";
 import Header from "@/components/UI/header/Header";
 import Footer from "@/components/UI/footer/Footer";
 import Link from "next/link";
+import {cookies} from "next/headers";
+import {redirect} from "next/navigation";
+import prismadb from "@/lib/prismadb";
+import {Avatar, Button} from "antd";
 
-export default function Layout({children}:{children:React.ReactNode}){
+export default async function Layout({children}:{children:React.ReactNode}){
+    const cookieStore = cookies()
+    const token = cookieStore.get('token')
+    let user: {id: number, login: string, hashedPassword: string, role: any, createAt: Date, updatedAt: Date, token: string | null, tokenExpires: Date | null, tokenCreatedAt: Date | null, avatarUrl: string} | null = null
+    if (token) {
+        user = await prismadb.user.findUnique({
+            where: {
+                token: `${token.value}`
+            }
+        })
+    }
     return (
         <div>
             <Header>
@@ -20,7 +34,10 @@ export default function Layout({children}:{children:React.ReactNode}){
                         <NavLink text={"Сборки"} url={"/assemblies"}/>
                     </div>
                 </div>
-                <LoginButton/>
+                {
+                    user? <Link href={"/profile"}><Button icon={<Avatar src={user.avatarUrl}/> }>{user.login}</Button></Link>
+                        : <LoginButton/>
+                }
             </Header>
             <main className={cl.content}>
                 {children}
