@@ -1,6 +1,5 @@
 import Login from "@/components/auth/login/Login";
 import Card from "@/components/UI/card/Card";
-import Register from "@/components/auth/register/Register";
 
 export default function LoginPage(){
     return (

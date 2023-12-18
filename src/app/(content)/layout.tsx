@@ -12,17 +12,7 @@ import prismadb from "@/lib/prismadb";
 import {Avatar, Button} from "antd";
 
 export default async function Layout({children}:{children:React.ReactNode}){
-    const cookieStore = cookies()
-    const token = cookieStore.get('token')
-    let user: {id: number, login: string, hashedPassword: string, role: any, createAt: Date, updatedAt: Date, token: string | null, tokenExpires: Date | null, tokenCreatedAt: Date | null, avatarUrl: string} | null = null
-    if (token) {
-        user = await prismadb.user.findUnique({
-            where: {
-                token: `${token.value}`
-            }
-        })
-    }
-    console.log(user)
+    const user = null
     return (
         <div>
             <Header>
@@ -36,7 +26,7 @@ export default async function Layout({children}:{children:React.ReactNode}){
                     </div>
                 </div>
                 {
-                    user? <Link href={"/profile"}><Button style={{height: "3.2rem"}} size={'large'} icon={<Avatar src={user.avatarUrl}/> }>{user.login}</Button></Link>
+                    user? <Link href={"/profile"}><Button style={{height: "3.2rem"}} size={'large'} icon={<Avatar src={user?.avatarUrl}/> }>{user?.login}</Button></Link>
                         : <LoginButton/>
                 }
             </Header>

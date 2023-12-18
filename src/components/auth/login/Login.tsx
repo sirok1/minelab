@@ -11,6 +11,7 @@ import {useState} from "react";
 import {Backdrop, CircularProgress} from "@mui/material";
 import {useRouter} from "next/navigation";
 import axios from "axios";
+import {auth} from "@/auth";
 
 function Copyright(props: any) {
     return (
@@ -40,21 +41,7 @@ export default function Login() {
         }
         setLoginError("")
         setPasswordError("")
-        try {
-            await axios.post("/api/user/login", {
-                login: data.get("login"),
-                password: data.get("password")
-            })
-            setOpen(false)
-            router.replace("/profile")
-        }
-        catch (e) {
-            console.error(e)
-            setLoginError("Неправильное имя пользователя или пароль")
-            setPasswordError("Неправильное имя пользователя или пароль")
-            setOpen(false)
-        }
-
+        await auth()
     };
 
     const handleBackdrop = () => {

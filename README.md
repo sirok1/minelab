@@ -1,3 +1,5 @@
+all secret info in `.env.local`
+
 example of .env.local
 ```dotenv
 POSTGRES_PASSWORD=
@@ -5,7 +7,7 @@ PG_LINK=
 NEXTAUTH_SECRET=
 ```
 
-gen ACCESS_TOKEN
+gen NEXTAUTH_SECRET
 ```
 openssl rand -base64 32
 ```

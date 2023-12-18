@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Raleway } from 'next/font/google'
 import './globals.css'
 import React from "react";
-import ReactQueryProvider from "@/components/providers/ReactQueryProvider";
 
 const raleway = Raleway({ subsets: ['cyrillic-ext'] })
 
@@ -19,9 +18,7 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={raleway.className}>
-          <ReactQueryProvider>
-            {children}
-          </ReactQueryProvider>
+        {children}
       </body>
     </html>
   )

@@ -49,19 +49,6 @@ export default function Register() {
             setPasswordError("Пароль должен содержать минимум 6 символов")
             return handleBackdrop()
         }
-        try {
-            await axios.post("/api/user/create", {
-                login: data.get('login'),
-                password: data.get('first-password')
-            })
-            setOpen(false)
-            router.replace('/profile')
-        }
-        catch (e) {
-            console.error(e)
-            setLoginError("Пользователь с таким именем уже существует")
-            setOpen(false)
-        }
     }
     const handleBackdrop = () => {
         setOpen(!open)
