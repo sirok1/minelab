@@ -1,14 +1,11 @@
 "use client"
 import Button from "@mui/material/Button";
-import axios from "axios";
-import {useRouter} from "next/navigation";
 import {message} from "antd";
+import {logOut} from "@/actions/server/authenticate";
 
 export default function LogoutButton(){
-    const router = useRouter()
     const handleLogout = (e:any) => {
-        axios.delete('/api/user/logout').then(() => {
-            router.replace("/")
+        logOut().then(() => {
             message.success("Выход успешно выполнен")
         })
     }

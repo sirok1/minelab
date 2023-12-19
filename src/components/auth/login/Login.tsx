@@ -41,6 +41,7 @@ export default function Login() {
         setLoginError("")
         setPasswordError("")
         await authenticate({login: `${data.get("login")}`, password: `${data.get("password")}`})
+        router.replace("/")
     };
 
     const handleBackdrop = () => {

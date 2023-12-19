@@ -5,7 +5,6 @@ import prismadb from "@/lib/prismadb";
 export async function getCurrentUser(){
     const session = await auth()
     if (!session || !session.user) return null
-    console.log(session)
     const user = await prismadb.user.findUnique({
         where: {
             login: `${session.user.email}`,

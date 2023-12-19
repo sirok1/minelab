@@ -6,13 +6,12 @@ import LoginButton from "@/components/buttons/loginButton/LoginButton";
 import Header from "@/components/UI/header/Header";
 import Footer from "@/components/UI/footer/Footer";
 import Link from "next/link";
-import {Avatar, Button} from "antd";
 import {getCurrentUser} from "@/actions/server/user";
 import {redirect} from "next/navigation";
+import {Avatar, Button} from "@mui/material";
 
 export default async function Layout({children}:{children:React.ReactNode}){
     const user = await getCurrentUser()
-    if (!user) redirect("/login")
     return (
         <div>
             <Header>
@@ -26,12 +25,14 @@ export default async function Layout({children}:{children:React.ReactNode}){
                     </div>
                 </div>
                 {
-                    user? <Link href={"/profile"}><Button style={{height: "3.2rem"}} size={'large'} icon={<Avatar src={user?.avatarUrl}/> }>{user?.login}</Button></Link>
+                    user? <Link href={"/profile"}><Button style={{height: "3.2rem"}} size={'large'} startIcon={<Avatar src={user?.avatarUrl}/> }>{user?.login}</Button></Link>
                         : <LoginButton/>
                 }
             </Header>
             <main className={cl.content}>
-                {children}
+                <div>
+                    {children}
+                </div>
             </main>
             <Footer>
                 <div className={cl.socialLinks}>
