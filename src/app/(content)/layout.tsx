@@ -7,8 +7,8 @@ import Header from "@/components/UI/header/Header";
 import Footer from "@/components/UI/footer/Footer";
 import Link from "next/link";
 import {getCurrentUser} from "@/actions/server/user";
-import {redirect} from "next/navigation";
-import {Avatar, Button} from "@mui/material";
+import {Avatar, Button, Fab} from "@mui/material";
+import MenuWrapper from "@/components/wrappers/MenuWrapper";
 
 export default async function Layout({children}:{children:React.ReactNode}){
     const user = await getCurrentUser()
@@ -25,8 +25,8 @@ export default async function Layout({children}:{children:React.ReactNode}){
                     </div>
                 </div>
                 {
-                    user? <Link href={"/profile"}><Button style={{height: "3.2rem"}} size={'large'} startIcon={<Avatar src={user?.avatarUrl}/> }>{user?.login}</Button></Link>
-                        : <LoginButton/>
+                    user? <Link className={cl.loginButton} href={"/profile"}><Button style={{height: "3.2rem"}} size={'large'} startIcon={<Avatar src={user?.avatarUrl}/> }>{user?.login}</Button></Link>
+                        : <span className={cl.loginButton}><LoginButton/></span>
                 }
             </Header>
             <main className={cl.content}>

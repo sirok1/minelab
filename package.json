@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "fakesite": "next dev -p 80 ",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -15,7 +16,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.20",
+    "@mui/icons-material": "^5.15.0",
+    "@mui/material": "^5.15.0",
     "@prisma/client": "5.7.1",
     "@reduxjs/toolkit": "^2.0.1",
     "antd": "^5.12.2",

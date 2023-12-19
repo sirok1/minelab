@@ -17,3 +17,6 @@
     align-items: center;
     min-width: 100%;
 }
+@media (max-width: 576px) {
+    .header{display: none}
+}

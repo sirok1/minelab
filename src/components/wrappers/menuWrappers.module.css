@@ -1,0 +1,7 @@
+.button {
+    display: none;
+}
+
+@media (max-width: 576px) {
+    .button{display: block}
+}

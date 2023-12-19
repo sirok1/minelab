@@ -7,7 +7,7 @@ export default function Home() {
     <div style={{minWidth: "100%", display: "grid"}}>
         <div style={{display: "flex", justifyContent: "center", maxWidth: "80%", width: "60%", justifySelf: "center"}}>
           <Card>
-            <div style={{display: "flex", flexDirection: "column", justifyContent: "center", minHeight: "100%"}}>
+            <div style={{display: "flex", flexDirection: "column", justifyContent: "center", minHeight: "100%", maxWidth: "100%"}}>
                 <Image src={"/assets/full-logo.png"} height={140} width={380} alt={"logo minelab"}/>
                   <article className={cl.mainText}>
                       <p>Привет, странник! Добро пожаловать в MINElab - твой уютный уголок в мире Майнкрафта! 🎮 🌍 Здесь тебя ждёт невероятное приключение, где можно раскрывать свои творческие способности, строить эпические сооружения и исследовать безграничные просторы этой удивительной виртуальной вселенной.</p>
