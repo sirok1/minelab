@@ -10,7 +10,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import {useState} from "react";
 import {Backdrop, CircularProgress} from "@mui/material";
-import axios from "axios";
+import {register} from "@/actions/server/authenticate";
 import {useRouter} from "next/navigation";
 function Copyright(props: any) {
     return (
@@ -49,6 +49,15 @@ export default function Register() {
             setPasswordError("Пароль должен содержать минимум 6 символов")
             return handleBackdrop()
         }
+        try {
+            await register({login: `${data.get("login")}`, password: `${data.get("first-password")}`})
+            router.replace("/")
+        }
+        catch (e) {
+            setLoginError("Пользователь с таким логином уже существует")
+            return handleBackdrop()
+        }
+
     }
     const handleBackdrop = () => {
         setOpen(!open)

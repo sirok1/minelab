@@ -6,13 +6,13 @@ import LoginButton from "@/components/buttons/loginButton/LoginButton";
 import Header from "@/components/UI/header/Header";
 import Footer from "@/components/UI/footer/Footer";
 import Link from "next/link";
-import {cookies} from "next/headers";
-import {redirect} from "next/navigation";
-import prismadb from "@/lib/prismadb";
 import {Avatar, Button} from "antd";
+import {getCurrentUser} from "@/actions/server/user";
+import {redirect} from "next/navigation";
 
 export default async function Layout({children}:{children:React.ReactNode}){
-    const user = null
+    const user = await getCurrentUser()
+    if (!user) redirect("/login")
     return (
         <div>
             <Header>

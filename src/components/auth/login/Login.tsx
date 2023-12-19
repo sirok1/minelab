@@ -10,8 +10,7 @@ import Container from '@mui/material/Container';
 import {useState} from "react";
 import {Backdrop, CircularProgress} from "@mui/material";
 import {useRouter} from "next/navigation";
-import axios from "axios";
-import {auth} from "@/auth";
+import {authenticate} from "@/actions/server/authenticate";
 
 function Copyright(props: any) {
     return (
@@ -41,7 +40,7 @@ export default function Login() {
         }
         setLoginError("")
         setPasswordError("")
-        await auth()
+        await authenticate({login: `${data.get("login")}`, password: `${data.get("password")}`})
     };
 
     const handleBackdrop = () => {
@@ -103,7 +102,7 @@ export default function Login() {
                         Войти
                     </Button>
                     <div style={{textAlign: "right"}}>
-                        <Link href="/register" style={{textDecoration: "none", color: "blue"}}>
+                        <Link href="/register" replace  style={{textDecoration: "none", color: "blue"}}>
                             Нет аккаунта ? Зарегистрируйтесь
                         </Link>
                     </div>

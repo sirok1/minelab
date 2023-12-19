@@ -1,9 +1,13 @@
-import {handlers} from "@/auth";
-import {NextRequest} from "next/server";
+import { handlers } from "@/auth";
+import type { NextRequest } from "next/server";
 
-const {GET: AuthGET, POST} = handlers
-export {POST}
+const { GET: AuthGET, POST } = handlers;
+export { POST };
 
-export async function GET(request: NextRequest){
-    return await AuthGET(request)
+// Showcasing advanced initialization in Route Handlers
+export async function GET(request: NextRequest) {
+    // Do something with request
+    const response = await AuthGET(request);
+    // Do something with response
+    return response;
 }
