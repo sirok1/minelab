@@ -1,0 +1,51 @@
+.linksContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+}
+.menu {
+    display: flex;
+    gap: 2em;
+    align-items: center;
+}
+
+.content {
+    margin-block: 1rem;
+    margin-inline: 5em;
+    min-height: calc(100vh - 9.7rem);
+    display: flex;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 2em;
+}
+
+.serviceInfo {
+    display: flex;
+    gap: 2em;
+}
+
+.serviceInfo a {
+    color: #429295;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.serviceInfo span {
+    color: #429295;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.loginButton {
+
+}
+
+@media (max-width: 576px) {
+    .content{margin-inline: 0; max-width: 100vw}
+    .menu{display: none}
+    .serviceInfo{flex-direction: column; gap: 0; text-align: center}
+    .loginButton{display: none}
+}

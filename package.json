@@ -1,24 +1,50 @@
 {
   "name": "minelab",
-  "version": "0.1.0",
+  "version": "1.0.0-snapshot",
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "fakesite": "next dev -p 80 ",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format-db-scheme": "prisma format",
+    "prisma-dev-migration": "dotenv -e .env.local prisma migrate dev",
+    "prisma-studio": "dotenv -e .env.local cross-env BROWSER=none prisma studio --browser none",
+    "generate-prisma-client": "pnpm prisma generate"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.0",
+    "@mui/material": "^5.15.0",
+    "@prisma/client": "5.7.1",
+    "@reduxjs/toolkit": "^2.0.1",
+    "antd": "^5.12.2",
+    "axios": "^1.6.2",
+    "bcrypt": "^5.1.1",
+    "human-date": "^1.4.0",
+    "next": "14.0.4",
+    "next-auth": "5.0.0-beta.4",
+    "prisma": "^5.7.1",
+    "random-avatar-generator": "^2.0.0",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.3"
+    "react-redux": "^9.0.4",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/bcrypt": "^5.0.2",
+    "@types/human-date": "^1.4.5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-redux": "^7.1.32",
+    "autoprefixer": "^10.4.16",
+    "cross-env": "^7.0.3",
+    "dotenv-cli": "^7.3.0",
     "eslint": "^8",
-    "eslint-config-next": "14.0.3"
+    "eslint-config-next": "14.0.3",
+    "typescript": "^5"
   }
 }

@@ -1,0 +1,18 @@
+.mainText {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.buttons {
+    padding-block: 1em;
+    display: flex;
+    max-width: 95%;
+    gap: 1em;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+}
